@@ -17,8 +17,6 @@ import java.io.Serializable;
 @ApiModel(value="Question对象", description="题目表")
 public class Question implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     /**
      * 题目ID
      */

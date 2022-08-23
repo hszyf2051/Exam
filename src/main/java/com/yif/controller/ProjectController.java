@@ -1,9 +1,9 @@
 package com.yif.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yif.entity.Project;
 import com.yif.entity.Question;
-import com.yif.service.QuestionService;
+import com.yif.service.ProjectService;
 import com.yif.utils.ResultUtil;
 import com.yif.vo.params.Result;
 import io.swagger.annotations.Api;
@@ -14,40 +14,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 /**
  * @author yif
  */
-@Api(tags = "问题测试")
+@Api(tags = "商品")
 @RestController
-@RequestMapping("/question")
-public class QuestionController {
+@RequestMapping("/product")
+public class ProjectController {
     @Autowired
-    private QuestionService questionService;
+    private ProjectService projectService;
 
-    @ApiOperation(value = "查询所有问题")
-    @GetMapping("/findQuestion")
-    public Result findQuestion(Question question,
+    @ApiOperation(value = "查询所有物品")
+    @GetMapping("/findProject")
+    public Result findProject(Project project,
                                @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
                                @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
         Page page = new Page<>(pageNo, pageSize);
-        Page pageData = questionService.page(page);
+        Page pageData = projectService.page(page);
         return ResultUtil.success(pageData);
     }
 
+
     /**
      * 根据输入的字段查询所有问题
-     * @param content
+     * @param title
      * @return
      */
     @ApiOperation(value = "根据输入的字段查询所有问题")
-    @GetMapping("/findQuestionByContent")
-    public Result<Page<Question>> findQuestionByContent(@RequestParam String content,
-                                        @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
-                                        @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
-        Page<Question> page = new Page<>(pageNo,pageSize);
-        Page<Question> questionByContent = questionService.findQuestionByContent(pageNo, pageSize, content);
-        return ResultUtil.success(questionByContent);
+    @GetMapping("/findProjectByTitle")
+    public Result<Page<Project>> findProjectByTitle(@RequestParam String title,
+                                                        @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
+                                                        @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+        Page<Project> page = new Page<>(pageNo,pageSize);
+        Page<Project> projectByTitle = projectService.findProjectByTitle(pageNo, pageSize, title);
+        return ResultUtil.success(projectByTitle);
     }
 }

@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     username: root
-    password: yif2051
+    password: hszyf2051
     url: jdbc:mysql://localhost:3306/exam?useUnicode=true&characterEncoding=UTF-8&serverTimeZone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource

@@ -8,7 +8,7 @@ import com.yif.vo.params.Result;
 public class ResultUtil {
     public static Result success(Object data) {
         Result result = new Result();
-        result.setCode(0);
+        result.setCode(200);
         result.setMsg("成功");
         result.setData(data);
         return result;
