@@ -1,10 +1,8 @@
 package com.yif.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yif.entity.Question;
 import com.yif.service.QuestionService;
-import com.yif.utils.ResultUtil;
 import com.yif.vo.params.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 /**
  * @author yif
@@ -33,21 +30,22 @@ public class QuestionController {
                                @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
         Page page = new Page<>(pageNo, pageSize);
         Page pageData = questionService.page(page);
-        return ResultUtil.success(pageData);
+        return Result.success(pageData);
     }
 
     /**
      * 根据输入的字段查询所有问题
+     *
      * @param content
      * @return
      */
     @ApiOperation(value = "根据输入的字段查询所有问题")
     @GetMapping("/findQuestionByContent")
     public Result<Page<Question>> findQuestionByContent(@RequestParam String content,
-                                        @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
-                                        @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
-        Page<Question> page = new Page<>(pageNo,pageSize);
+                                                        @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
+                                                        @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+        Page<Question> page = new Page<>(pageNo, pageSize);
         Page<Question> questionByContent = questionService.findQuestionByContent(pageNo, pageSize, content);
-        return ResultUtil.success(questionByContent);
+        return Result.success(questionByContent);
     }
 }

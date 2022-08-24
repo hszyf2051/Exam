@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yif.entity.Project;
-import com.yif.entity.Question;
 import com.yif.mapper.ProjectMapper;
 import com.yif.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,17 +19,28 @@ import org.springframework.stereotype.Service;
 public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> implements ProjectService {
     @Autowired
     private ProjectMapper projectMapper;
+
     @Override
     public Page<Project> findProjectByTitle(Integer pageNo, Integer pageSize, String title) {
-        Page<Project> page = new Page<>(pageNo,pageSize);
+        Page<Project> page = new Page<>(pageNo, pageSize);
         LambdaQueryWrapper<Project> lqw = new LambdaQueryWrapper<>();
         if (StringUtils.isNotEmpty(title)) {
             // 模糊查询题目字段
-            lqw.like(Project::getTitle,title);
+            lqw.like(Project::getTitle, title);
         } else {
-            return projectMapper.selectPage(page,null);
+            return projectMapper.selectPage(page, null);
         }
         Page<Project> pageList = projectMapper.selectPage(page, lqw);
         return pageList;
+    }
+
+    @Override
+    public Boolean addProject(Project project) {
+        int flag = projectMapper.insert(project);
+        if (flag == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
