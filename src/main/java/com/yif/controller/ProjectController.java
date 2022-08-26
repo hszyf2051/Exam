@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(tags = "商品")
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/project")
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
@@ -42,7 +42,6 @@ public class ProjectController {
                                                     @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
         Page<Project> page = new Page<>(pageNo, pageSize);
         Page<Project> projectByTitle = projectService.findProjectByTitle(pageNo, pageSize, title);
-//        return Result.fail(ResultEnum.ACCOUNT_EXIST);
         return Result.success(projectByTitle);
     }
 

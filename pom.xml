@@ -91,7 +91,7 @@
             <version>3.1.1</version>
         </dependency>
 
-        <!--redis依赖 -->
+        <!-- redis依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -111,12 +111,19 @@
             <version>4.5.6</version>
         </dependency>
 
-        <!--devtools热部署-->
+        <!-- devtools热部署 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
             <scope>true</scope>
+        </dependency>
+
+        <!-- 七牛云 -->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>[7.2.0, 7.2.99]</version>
         </dependency>
 
         <dependency>

@@ -25,10 +25,25 @@ public class Result<T> implements Serializable {
         return result;
     }
 
+    public static Result success(int code, String msg, Object data) {
+        Result result = new Result();
+        result.setCode(code);
+        result.setMsg(msg);
+        result.setData(data);
+        return result;
+    }
+
     public static Result fail(ResultEnum resultEnum) {
         Result result = new Result();
         result.setCode(resultEnum.getCode());
         result.setMsg(resultEnum.getMsg());
+        return result;
+    }
+
+    public static Result fail(int code, String msg) {
+        Result result = new Result();
+        result.setCode(code);
+        result.setMsg(msg);
         return result;
     }
 
