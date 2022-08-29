@@ -12,4 +12,6 @@ public interface ProjectService extends IService<Project> {
     Page<Project> findProjectByTitle(Integer pageNo, Integer pageSize, String title);
 
     Boolean addProject(Project project);
+
+    Boolean updateProjectById(Project project);
 }

@@ -8,6 +8,10 @@ spring:
       exclude: WEB-INF/**
     freemarker:
       cache: false    #页面不加载缓存，修改即时生效
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
   datasource:
     username: root
     password: hszyf2051
@@ -25,3 +29,7 @@ spring:
     user:
       name: yif
       password: 1234
+#控制台打印sql语句
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

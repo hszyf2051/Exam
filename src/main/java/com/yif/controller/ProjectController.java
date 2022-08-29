@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+
 /**
  * @author yif
  */
@@ -47,7 +49,6 @@ public class ProjectController {
 
     /**
      * 添加商品
-     *
      * @param project
      * @return
      */
@@ -55,6 +56,34 @@ public class ProjectController {
     @PostMapping("/addProject")
     public Result addProject(@RequestBody Project project) {
         Boolean flag = projectService.addProject(project);
-        return Result.success(flag);
+        if (flag == true) {
+            return Result.success(flag);
+        } else {
+            return Result.fail(999,"添加商品失败");
+        }
+    }
+
+    @Transactional
+    @ApiOperation(value = "删除商品")
+    @DeleteMapping("/deleteProjectById")
+    public Result deleteProject(@RequestParam Integer id) {
+        boolean flag = projectService.removeById(id);
+        if (flag == true) {
+            return Result.success(flag);
+        } else {
+                return Result.fail(999,"删除商品失败");
+            }
+        }
+
+    @ApiOperation(value = "编辑商品")
+    @PutMapping("/updateById")
+    public Result updateProject(@RequestBody Project project) {
+        Boolean flag = projectService.updateProjectById(project);
+        if (flag == true) {
+            return Result.success(flag);
+        } else {
+            return Result.fail(999,"编辑商品失败");
+        }
     }
 }
+
