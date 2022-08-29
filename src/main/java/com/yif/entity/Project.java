@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@ApiModel(value="Project对象", description="商品列表")
+@ApiModel(value = "Project对象", description = "商品列表")
 @EqualsAndHashCode(callSuper = false)
 public class Project {
     /**
@@ -57,6 +57,10 @@ public class Project {
      * 商品状态
      */
     private String status;
+
+    /**
+     * 创建时间
+     */
     private String created;
     private String updated;
 
