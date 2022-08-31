@@ -7,7 +7,7 @@ package com.yif.vo.params;
 public enum ResultEnum {
 
     PARAMS_ERROR(100, "参数有误"),
-    ACCOUNT_PWD_NOT_EXIST(101, "用户不存在，请重新登录"),
+
     ACCOUNT_PWD_ERROR(102, "密码输入错误"),
     TOKEN_ILLEGAL(103, "token不合法"),
     TOKEN_NOT_EXIST(104, "token不存在"),
@@ -18,7 +18,10 @@ public enum ResultEnum {
     ANSWER_EXIST(108, "答案已存在"),
     ANSWER_NOT_EXIST(109, "答案不存在"),
     CATEGORY_NOT_EXIST(110, "类别不存在"),
+    ACCOUNT_USERNAME_NOT_EXIST(111, "用户名不能为空"),
+    ACCOUNT_PWD_NOT_EXIST(112, "密码不能为空"),
     UPLOAD_FAILED(20001, "上传失败"),
+    REGISTER_FAILED(20002, "注册失败"),
     NO_PERMISSION(70001, "无访问权限"),
     SESSION_TIME_OUT(90001, "会话超时"),
     NO_LOGIN(90002, "未登录"),

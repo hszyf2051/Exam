@@ -22,7 +22,7 @@ public class JwtUtil {
      * 有效期为  60 * 60 *1000  一个小时
      */
 
-    public static final Long JWT_TTL = 24 * 60 * 60 * 1000L;
+    public static final Long JWT_TTL = 60 * 60 * 1000L;
     //设置秘钥明文
     public static final String JWT_KEY = "yif";
 
@@ -32,7 +32,7 @@ public class JwtUtil {
     }
 
     /**
-     * 生成jtw
+     * 生成jwt
      *
      * @param subject token中要存放的数据（json格式）
      * @return
@@ -44,7 +44,7 @@ public class JwtUtil {
     }
 
     /**
-     * 生成jtw
+     * 生成jwt
      *
      * @param subject   token中要存放的数据（json格式）
      * @param ttlMillis token超时时间
@@ -95,7 +95,7 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjYWM2ZDVhZi1mNjVlLTQ0MDAtYjcxMi0zYWEwOGIyOTIwYjQiLCJzdWIiOiJzZyIsImlzcyI6InNnIiwiaWF0IjoxNjM4MTA2NzEyLCJleHAiOjE2MzgxMTAzMTJ9.JVsSbkP94wuczb4QryQbAke3ysBDIL5ou8fWsbt_ebg";
+        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2YjIxOTBiMGFiNGY0ZjE0YWFhZDVkZGRmYTZjM2ZiOSIsInN1YiI6IjE1NjQ4OTYyNjczNTY2NjM4MDkiLCJpc3MiOiJ5aWYiLCJpYXQiOjE2NjE5MzU1NjAsImV4cCI6MTY2MjAyMTk2MH0.a8wvgs9X794La8G7OKW7Q0FuT5D00qils2k6KGnu7YE";
         Claims claims = parseJWT(token);
         System.out.println(claims);
     }
