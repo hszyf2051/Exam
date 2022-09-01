@@ -19,6 +19,7 @@ public enum ResultEnum {
     CATEGORY_NOT_EXIST(110, "类别不存在"),
     ACCOUNT_USERNAME_NOT_EXIST(111, "用户名不能为空"),
     ACCOUNT_PWD_NOT_EXIST(112, "密码不能为空"),
+    REQUIRE_USERNAME(504, "必须填写用户名"),
     UPLOAD_FAILED(20001, "上传失败"),
     REGISTER_FAILED(20002, "注册失败"),
 
@@ -28,6 +29,7 @@ public enum ResultEnum {
     NEED_LOGIN(401,"需要登陆后操作"),
     LOGIN_ERROR(402,"用户名或密码错误"),
     AUTHENTICATE_FAILED(403,"认证授权失败"),
+    SYSTEM_ERROR(505,"出现错误"),
     ;
 
     private int code;

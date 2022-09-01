@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yif.entity.LoginUser;
 import com.yif.entity.User;
+import com.yif.exception.SystemException;
 import com.yif.mapper.UserMapper;
 import com.yif.service.UserService;
 import com.yif.utils.BeanCopyUtils;
@@ -21,7 +22,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.SystemException;
 import java.util.Objects;
 
 /**
@@ -66,27 +66,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public boolean register(User user) throws SystemException {
+    public boolean register(User user) throws RuntimeException {
         // 对数据进行非空判断
         if (StringUtils.isEmpty(user.getUsername())) {
             log.info(ResultEnum.ACCOUNT_USERNAME_NOT_EXIST.getMsg());
             return false;
-        }
-        if (StringUtils.isEmpty(user.getPassword())) {
+        } else if (StringUtils.isEmpty(user.getPassword())) {
             log.info(ResultEnum.ACCOUNT_PWD_NOT_EXIST.getMsg());
             return false;
-        }
-        // 对数据进行是否存在的判断
-        if (userNameExist(user.getUsername())) {
+            // 对数据进行是否存在的判断
+        } else  if (userNameExist(user.getUsername())) {
             log.info(ResultEnum.ACCOUNT_EXIST.getMsg());
             return false;
+        } else {
+            String encodePassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encodePassword);
+            userMapper.insert(user);
+            // 存入数据库
+            return true;
         }
-        // 对密码进行加密
-        String encodePassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodePassword);
-        userMapper.insert(user);
-        // 存入数据库
-        return true;
+
+
     }
 
     private boolean userNameExist(String username) {

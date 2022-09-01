@@ -17,6 +17,7 @@ import java.io.IOException;
 
 /**
  * @author yif
+ * 用来解决匿名用户访问无权限资源时的异常
  */
 @Component
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
