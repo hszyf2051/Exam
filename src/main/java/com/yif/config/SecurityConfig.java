@@ -30,6 +30,7 @@ public class SecurityConfig {
 
     /**
      * 加密方式
+     *
      * @return
      */
     @Bean
@@ -57,6 +58,7 @@ public class SecurityConfig {
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler);
 
+        // 关闭默认的security的logout功能
         http.logout().disable();
         // 把jwtAuthenticationTokenFilter添加到SpringSecurity的过滤器链中
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);

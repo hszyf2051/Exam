@@ -47,4 +47,9 @@ public class UserController {
             return Result.fail(ResultEnum.REGISTER_FAILED);
         }
     }
+
+    @PostMapping("/logout")
+    public Result logout() {
+        return userService.logout();
+    }
 }

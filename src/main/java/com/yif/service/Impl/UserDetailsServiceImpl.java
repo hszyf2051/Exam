@@ -5,6 +5,7 @@ import com.yif.entity.LoginUser;
 import com.yif.entity.User;
 import com.yif.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userMapper.selectOne(lqw);
         // 判断是否查到用户，如果没有查到抛出异常
         if (Objects.isNull(user)) {
-            throw new RuntimeException("用户不存在");
+            throw new InternalAuthenticationServiceException("用户不存在");
         }
         // 返回用户信息
         // TODO 查询权限信息封装

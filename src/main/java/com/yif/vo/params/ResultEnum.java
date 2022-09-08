@@ -26,10 +26,10 @@ public enum ResultEnum {
     NO_PERMISSION(70001, "无访问权限"),
     SESSION_TIME_OUT(90001, "会话超时"),
     NO_LOGIN(90002, "未登录"),
-    NEED_LOGIN(401,"需要登陆后操作"),
-    LOGIN_ERROR(402,"用户名或密码错误"),
-    AUTHENTICATE_FAILED(403,"认证授权失败"),
-    SYSTEM_ERROR(505,"出现错误"),
+    NEED_LOGIN(401, "需要登陆后操作"),
+    LOGIN_ERROR(402, "用户名或密码错误"),
+    AUTHENTICATE_FAILED(403, "认证授权失败"),
+    SYSTEM_ERROR(505, "出现错误"),
     ;
 
     private int code;
